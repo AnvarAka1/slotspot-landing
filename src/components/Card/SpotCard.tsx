@@ -1,4 +1,4 @@
-import { Card, Text, Group, Image, createStyles, Title } from '@mantine/core';
+import { Card, createStyles, Group, Image, Text, Title } from '@mantine/core'
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -18,7 +18,7 @@ interface CompanyCardProps {
     image: string;
     title: string;
     author: string;
-    type: keyof object;
+    type: string;
     views: number;
     comments: number;
 }

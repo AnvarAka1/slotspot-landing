@@ -1,18 +1,16 @@
 import { Container, createStyles, Grid, useMantineTheme } from '@mantine/core'
-//TODO: primoy import qiluvring nastryka qilingan
-import { SpotDetailCard } from 'components/Card/SpotDetailCard'
-import { ImageCard } from 'components/Card/ImageCard'
-import { AvatarCarousel } from 'components/Carousel/AvatarCarousel'
-import { ServiceCard } from 'components/Card/ServiceCard'
-import { dateTime, mockData } from '../../constants/constants'
+import { SpotDetailCard } from '@src/components/Card/SpotDetailCard'
+import { ImageCard } from '@src/components/Card/ImageCard'
+import { AvatarCarousel } from '@src/components/Carousel/AvatarCarousel'
+import { ServiceCard } from '@src/components/Card/ServiceCard'
+import { dateTime, mockData } from '@src/constants/constants'
 import { useMediaQuery } from '@mantine/hooks'
 import { useQuery } from '@tanstack/react-query'
-import { SpotDetailCardMobile } from '../../components/Card/SpotDetailCardMobile'
-import { SpotDateTimeMobileCard } from '../../components/Card/SpotDateTimeMobileCard'
-import { AvatarCarouselMobile } from '../../components/Carousel/AvatarCarouselMobile'
-import { ServiceCardMobile } from '../../components/Card/ServiceCardMobile'
-import { getCompanyData } from '../../shared/api/exampleApi'
-
+import { SpotDetailCardMobile } from '@src/components/Card/SpotDetailCardMobile'
+import { SpotDateTimeMobileCard } from '@src/components/Card/SpotDateTimeMobileCard'
+import { AvatarCarouselMobile } from '@src/components/Carousel/AvatarCarouselMobile'
+import { ServiceCardMobile } from '@src/components/Card/ServiceCardMobile'
+import { getCompanyData } from '@shared/api/exampleApi'
 
 const useStyles = createStyles((theme) => ({
   container: {

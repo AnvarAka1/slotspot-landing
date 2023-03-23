@@ -1,8 +1,8 @@
-import { Navbar } from 'components/Navbar/Navbar'
+import { Navbar } from '@src/components/Navbar/Navbar'
 import { Outlet, useLocation } from 'react-router-dom'
 import SummaryCard from '../../components/Card/SummaryCard'
-import { Footer } from '../../components/Footer/Footer'
-import { footerData } from '../../constants/constants'
+import { Footer } from '@src/components/Footer/Footer'
+import { footerData } from '@src/constants/constants'
 
 export const Layout = () => {
   const { pathname } = useLocation()

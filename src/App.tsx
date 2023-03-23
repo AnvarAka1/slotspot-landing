@@ -1,7 +1,7 @@
 import './App.css'
-import { withHocs } from 'app/providers'
+import { withHocs } from '@src/app/providers'
 import { RouterProvider } from "react-router-dom";
-import { router } from "app/providers/routerConfig";
+import { router } from "@src/app/providers/routerConfig";
 
 function App() {
 

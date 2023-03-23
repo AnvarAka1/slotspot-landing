@@ -1,13 +1,9 @@
-import React from 'react';
-import { Grid, Skeleton, Container } from '@mantine/core';
-import {companyData} from "../../constants/constants";
-import {SpotCard} from "../../components/Card/SpotCard";
+import React from 'react'
+import { Container, Grid } from '@mantine/core'
+import { companyData } from '@src/constants/constants'
+import { SpotCard } from '@src/components/Card/SpotCard'
 
-
-const child = <Skeleton height={140} radius="md" animate={false} />;
-
-
-function CompaniesList(props) {
+function CompaniesList() {
     return (
         <Container size={1200} my={24}>
             <Grid>

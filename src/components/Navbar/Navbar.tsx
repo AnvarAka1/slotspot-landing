@@ -12,7 +12,7 @@ import {
 } from '@mantine/core'
 import SlotSpot from 'assets/icons/slotspot-icon.svg'
 import { useDisclosure } from '@mantine/hooks'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as ROUTES from '../../constants/routes'
 
 const useStyles = createStyles((theme) => ({
@@ -67,15 +67,15 @@ export function Navbar() {
           <Group sx={{ height: '100%' }} spacing={24} className={classes.hiddenMobile}>
             <Image height={24} width={110} src={SlotSpot}/>
 
-            <a href="#" className={classes.link}>
+            <Link to={ROUTES.HOME_PATH} className={classes.link}>
               О нас
-            </a>
-            <a href="#" className={classes.link}>
+            </Link>
+            <Link to={ROUTES.BUSINESS_PATH} className={classes.link}>
               Партнерам
-            </a>
-            <a href="#" className={classes.link}>
+            </Link>
+            <Link to={ROUTES.HOME_PATH} className={classes.link}>
               Скачать приложение
-            </a>
+            </Link>
           </Group>
 
           <Group className={classes.hiddenMobile}>

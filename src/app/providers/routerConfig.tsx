@@ -1,30 +1,25 @@
-import { CompanyView } from 'pages/SpotView/CompanyView'
+import { CompanyView } from '@pages/SpotView/CompanyView'
 import { createBrowserRouter } from 'react-router-dom'
-import { Layout } from 'shared/layout';
+import { Layout } from '@shared/layout';
 import Home from "../../pages/SpotView/Home";
-import CompaniesList from "../../pages/SpotView/CompaniesList";
-
-enum routePaths {
-    HOME = "/",
-    SPOTVIEW = "/company",
-    COMPANIES_LIST = "/companies"
-}
+import CompanyList from "@pages/SpotView/CompanyList";
+import * as ROUTES from '@src/constants/routes'
 
 export const router = createBrowserRouter([
     {
         element: <Layout />,
         children: [
             {
-                path: routePaths.HOME,
+                path: ROUTES.HOME_PATH,
                 element: <Home />
             },
             {
-                path: routePaths.SPOTVIEW,
+                path: ROUTES.COMPANY_DETAIL_PATH,
                 element: <CompanyView />,
             },
             {
-                path: routePaths.COMPANIES_LIST,
-                element: <CompaniesList />
+                path: ROUTES.COMPANY_LIST_PATH,
+                element: <CompanyList />
             }
         ]
     },

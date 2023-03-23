@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src/",
+    "baseUrl": ".",
     "outDir": "./dist/",
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -19,7 +19,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "pretty": true,
-    "assumeChangesOnlyAffectDirectDependencies": false
+    "assumeChangesOnlyAffectDirectDependencies": false,
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@shared/*": ["./src/shared/*"]
+    }
   },
   "include": ["./src", "vite.config.ts"],
   "exclude": ["node_modules"],
