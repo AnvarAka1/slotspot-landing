@@ -10,7 +10,7 @@ import {
   Image,
   ScrollArea
 } from '@mantine/core'
-import SlotSpot from 'assets/icons/slotspot-icon.svg'
+import SlotSpot from '@src/assets/icons/slotspot-icon.svg'
 import { useDisclosure } from '@mantine/hooks'
 import { Link, useNavigate } from 'react-router-dom'
 import * as ROUTES from '../../constants/routes'

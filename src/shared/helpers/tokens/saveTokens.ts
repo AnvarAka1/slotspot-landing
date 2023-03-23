@@ -1,6 +1,6 @@
-import { DEFAULTS_FOR_COOKIES_MAX_AGE } from "shared/helpers/constants";
-import { cookies, cookiesOptions } from "shared/helpers/cookies";
-import { COOKIE_NAMES } from "shared/types";
+import { DEFAULTS_FOR_COOKIES_MAX_AGE } from "@src/shared/helpers/constants";
+import { cookies, cookiesOptions } from "@src/shared/helpers/cookies";
+import { COOKIE_NAMES } from "@src/shared/types";
 
 import { extractExpiresInFromToken } from "./extractExpiresInFromToken";
 

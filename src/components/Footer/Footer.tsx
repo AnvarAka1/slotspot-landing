@@ -1,9 +1,9 @@
 import {ActionIcon, Container, createStyles, Group, Image, Text, Box} from '@mantine/core';
-import SlotSpot from 'assets/icons/slotspot-icon.svg';
-import TwitterIcon from 'assets/icons/Twitter.svg';
-import facebookIcon from 'assets/icons/facebook.svg';
-import LinkedInIcon from 'assets/icons/LinkedIN.svg';
-import instagramIcon from 'assets/icons/instagram.svg';
+import SlotSpot from '@src/assets/icons/slotspot-icon.svg';
+import TwitterIcon from '@src/assets/icons/Twitter.svg';
+import facebookIcon from '@src/assets/icons/facebook.svg';
+import LinkedInIcon from '@src/assets/icons/LinkedIN.svg';
+import instagramIcon from '@src/assets/icons/instagram.svg';
 
 const useStyles = createStyles((theme) => ({
     footer: {

@@ -1,38 +1,39 @@
-import { AxiosErrorWithRetry } from "./types";
-import axios from "axios";
-import { getTokens, saveTokens } from "shared/helpers/tokens";
-import httpStatusCodes from "http-status-codes";
-import { HEADERS_NAMES } from "shared/types";
+import { AxiosErrorWithRetry } from './types'
+import axios from 'axios'
+import { getTokens, saveTokens } from '@src/shared/helpers/tokens'
+import httpStatusCodes from 'http-status-codes'
+import { HEADERS_NAMES } from '@src/shared/types'
 
-import { BASE_URL } from "./endpoints";
+import { BASE_URL } from './endpoints'
+import toCamelCase from '@src/utils/toCamelCase'
 
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
-});
+  baseURL: 'https://api.slotspot.uz'
+})
 
 axiosInstance.interceptors.request.use((config) => {
-  config.headers = config.headers ?? {};
+  config.headers = config.headers ?? {}
 
-  const { accessToken } = getTokens();
+  const { accessToken } = getTokens()
 
   if (accessToken) {
-    config.headers[HEADERS_NAMES.AUTHORIZATION] = `Bearer ${accessToken}`;
+    config.headers[HEADERS_NAMES.AUTHORIZATION] = `Bearer ${accessToken}`
   }
 
-  return config;
-});
+  return config
+})
 
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => toCamelCase(response),
   async (error: AxiosErrorWithRetry) => {
-    const originalRequest = error.config ?? {};
+    const originalRequest = error.config ?? {}
 
     if (
       (error.response?.status === httpStatusCodes.FORBIDDEN ||
         error.response?.status === httpStatusCodes.UNAUTHORIZED) &&
       !originalRequest.isRetry
     ) {
-      originalRequest.isRetry = true;
+      originalRequest.isRetry = true
 
       //   const tokens = getTokens()
 
@@ -48,11 +49,11 @@ axiosInstance.interceptors.response.use(
 
       //   saveTokens({ accessToken, refreshToken })
 
-      return await axiosInstance.request(originalRequest);
+      return await axiosInstance.request(originalRequest)
     }
 
-    return await Promise.reject(error);
+    return await Promise.reject(error)
   }
-);
+)
 
-export default axiosInstance;
+export default axiosInstance

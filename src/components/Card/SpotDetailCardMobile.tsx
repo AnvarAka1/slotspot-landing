@@ -43,8 +43,8 @@ interface SpotDetailCardMobileProps {
   title: string;
   description: string;
   rating: {
-    rating_avg: number;
-    rating_count: number
+    ratingAvg: number;
+    ratingCount: number
   };
 }
 
@@ -76,7 +76,7 @@ export function SpotDetailCardMobile({
               <Image width={24} height={24} src={starIcon}/>
               <Group spacing={12}>
                 <Text className={classes.rating} align="center" size={12} weight={400} component="p">
-                  {rating.rating_count}
+                  {rating.ratingCount}
                 </Text>
                 <Divider orientation="vertical"/>
 

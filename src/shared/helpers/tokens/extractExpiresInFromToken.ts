@@ -1,4 +1,4 @@
-import { MS_IN_SECOND } from "shared/helpers/constants";
+import { MS_IN_SECOND } from "@src/shared/helpers/constants";
 import jwtDecode from "jwt-decode";
 
 export const extractExpiresInFromToken = (
