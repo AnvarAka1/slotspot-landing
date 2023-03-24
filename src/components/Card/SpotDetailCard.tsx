@@ -2,6 +2,7 @@ import { Avatar, Badge, Button, Card, createStyles, Divider, Group, Image, List,
 import starIcon from '../../assets/icons/star-icon.svg'
 import callIcon from '../../assets/icons/call-icon.svg'
 import locationMarkerIcon from '../../assets/icons/location-marker.svg'
+import { CompanyResDto } from '@src/dto/company'
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -37,34 +38,20 @@ const useStyles = createStyles((theme) => ({
   }
 }))
 
-interface SpotDetailCardProps {
-  image: string;
-  logo: string;
-  title: string;
-  description: string;
-  rating: {
-    ratingAvg: number;
-    ratingCount: number;
-  };
+type Props = {
+  company: CompanyResDto
 }
 
-export function SpotDetailCard({
-                                 image,
-                                 logo,
-                                 title,
-                                 description,
-                                 rating,
-                                 ...others
-                               }: SpotDetailCardProps) {
+export function SpotDetailCard({ company }: Props) {
+  const {image, rating, address, logo, description, title } = company
   const { classes, cx } = useStyles()
 
-  console.log(rating)
   return (
-    <Card withBorder radius={12} className={classes.card} {...others}>
+    <Card withBorder radius={12} className={classes.card}>
       <Card.Section pt={32} pl={16} pr={16}>
         <Group position="center">
           <Avatar
-            src={image}
+            src={logo}
             size={160}
             radius={100}
           />
@@ -84,12 +71,11 @@ export function SpotDetailCard({
         </Text>
 
         <Text align="center" size={14} className={classes.address} component="p">
-          17 Matbuotchilar ko'chasi, Tashkent 100047
+          {address}
         </Text>
       </Card.Section>
 
       <Divider my="sm"/>
-
 
       <Text size="md" align="center">
         {description}

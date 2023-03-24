@@ -71,19 +71,13 @@ function CompanyDetailContainer() {
             <Container my="xl" size={1200}>
               <Grid gutter={4} gutterXs="md" gutterMd="xl" gutterXl={24}>
                 <Grid.Col lg={3} sm={6}>
-                  <SpotDetailCard
-                    title={companyData.title}
-                    description={companyData.description}
-                    image={companyData.image}
-                    logo={companyData.logo}
-                    rating={companyData.rating}
-                  />
+                  <SpotDetailCard company={companyData} />
                 </Grid.Col>
                 <Grid.Col lg={9} sm={6}>
-                  <ImageCard image={mockData.image}/>
+                  <ImageCard image={companyData.image}/>
                   <AvatarCarousel/>
                   <ServiceCard
-                    image={mockData.image}
+                    image={companyData.image}
                     title="Мужская стрижка (VIP кабинка)"
                     description="Классическая или современная стрижка. Услуга включает в
                         себя мытьё головы до и после стрижки шампунем American Crew, массаж головы плеч и рук,

@@ -1,5 +1,6 @@
 import { Card, createStyles, Group, Image, Text, Title } from '@mantine/core'
-import { CompanyResponseDto } from '@src/modules/company/dto'
+import { CompanyResDto } from '@src/dto/company'
+import { generatePath, Link } from 'react-router-dom'
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -15,11 +16,12 @@ const useStyles = createStyles((theme) => ({
 }))
 
 type Props = {
-  company: CompanyResponseDto
+  company: CompanyResDto
+  path: string
 }
 
-export function SpotCard({ company }: Props) {
-  const { image, title } = company
+export function SpotCard({ company, path }: Props) {
+  const { image, title, rating, address } = company
   const { classes, cx } = useStyles()
 
   return (
@@ -28,19 +30,18 @@ export function SpotCard({ company }: Props) {
       radius={12}
       p={0}
     >
-      <Image pos="relative" src={image} radius={12} height={200}/>
+      <Link to={path}>
+        <Image pos="relative" src={image} radius={12} height={200}/>
+      </Link>
+
 
       <Title size={24}>
-        {title}
+        <Link to={path}>{title}</Link>
       </Title>
 
       <Group>
-        <Text>
-          4.9
-        </Text>
-        <Text>
-          17 Matbuotchilar ko'chasi, Tashkent 100047
-        </Text>
+        <Text>{rating.ratingAvg}</Text>
+        <Text>{address}</Text>
       </Group>
     </Card>
   )
