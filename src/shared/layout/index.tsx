@@ -12,6 +12,7 @@ type Props = {
 export const Layout = ({ children }: Props) => {
   const { pathname } = useLocation()
   const companyViewPath = pathname === '/company'
+
   return (
     <>
       <Navbar/>
