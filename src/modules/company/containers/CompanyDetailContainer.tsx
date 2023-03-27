@@ -71,19 +71,20 @@ function CompanyDetailContainer() {
             <Container my="xl" size={1200}>
               <Grid gutter={4} gutterXs="md" gutterMd="xl" gutterXl={24}>
                 <Grid.Col lg={3} sm={6}>
-                  <SpotDetailCard company={companyData} />
+                  <SpotDetailCard company={companyData}/>
                 </Grid.Col>
                 <Grid.Col lg={9} sm={6}>
                   <ImageCard image={companyData.image}/>
-                  <AvatarCarousel/>
-                  <ServiceCard
-                    image={companyData.image}
-                    title="Мужская стрижка (VIP кабинка)"
-                    description="Классическая или современная стрижка. Услуга включает в
-                        себя мытьё головы до и после стрижки шампунем American Crew, массаж головы плеч и рук,
-                        укладка с примирением высококачественной мужской косметики , также консультация и рекомендации по уходу за волосами"
-                    price="300 000 сум"
-                  />
+                  <AvatarCarousel employees={companyData.employees}/>
+                  {companyData.services.map((service) => (
+                    <ServiceCard
+                      key={service.id}
+                      image={companyData.image}
+                      title={service.title}
+                      description={service.description}
+                      price={service.price}
+                    />
+                  ))}
                 </Grid.Col>
               </Grid>
             </Container>

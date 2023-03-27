@@ -42,8 +42,10 @@ type Props = {
   company: CompanyResDto
 }
 
+const toTime = (time: string) => time.split(':').slice(0, -1).join(':')
+
 export function SpotDetailCard({ company }: Props) {
-  const {image, rating, address, logo, description, title } = company
+  const {rating, address, logo, description, title, schedule } = company
   const { classes, cx } = useStyles()
 
   return (
@@ -95,14 +97,13 @@ export function SpotDetailCard({ company }: Props) {
           <List.Item>Воскресенье</List.Item>
         </List>
         <List className={classes.list} spacing={12}>
-          <List.Item>с 10:00 до 22:00</List.Item>
-          <List.Item>с 10:00 до 22:00</List.Item>
-          <List.Item>с 10:00 до 22:00</List.Item>
-          <List.Item>с 10:00 до 22:00</List.Item>
-          <List.Item>с 10:00 до 22:00</List.Item>
-          <List.Item>с 10:00 до 22:00</List.Item>
-          <List.Item>с 10:00 до 22:00</List.Item>
-          <List.Item>с 10:00 до 22:00</List.Item>
+          <List.Item>с {toTime(schedule.mondayStartTime)} до {toTime(schedule.mondayEndTime)}</List.Item>
+          <List.Item>с {toTime(schedule.tuesdayStartTime)} до {toTime(schedule.tuesdayEndTime)}</List.Item>
+          <List.Item>с {toTime(schedule.wednesdayStartTime)} до {toTime(schedule.wednesdayEndTime)}</List.Item>
+          <List.Item>с {toTime(schedule.thursdayStartTime)} до {toTime(schedule.thursdayEndTime)}</List.Item>
+          <List.Item>с {toTime(schedule.fridayStartTime)} до {toTime(schedule.fridayEndTime)}</List.Item>
+          <List.Item>с {toTime(schedule.saturdayStartTime)} до {toTime(schedule.saturdayEndTime)}</List.Item>
+          <List.Item>с {toTime(schedule.sundayStartTime)} до {toTime(schedule.sundayEndTime)}</List.Item>
         </List>
       </Group>
 
