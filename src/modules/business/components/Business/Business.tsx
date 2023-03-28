@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Box, Button, Grid, Group, Text, Image } from '@mantine/core'
+import { Container, Box, Button, Grid, Group, Text, Image, Title } from '@mantine/core'
 
 type Props = Record<string, unknown>
 
@@ -9,19 +9,30 @@ function Business(props: Props) {
       <Container size="lg">
         <Grid>
           <Grid.Col span={12}>
-            <Text>
-              Готовы поднять свой бизнес на новый уровень?
-            </Text>
-            <Text>
-              Мы готовы помочь с этим. Оставьте нам заявку и мы добавим ваш бизнес в свой каталог услуг – бесплатно!
-            </Text>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              marginTop: '60px',
+              marginBottom: '70px'
+            }}>
+              <Title size="xxx-large">
+                Готовы поднять свой<br/> бизнес на новый уровень?
+              </Title>
+              <Text mt="lg">
+                Мы готовы помочь с этим. Оставьте нам заявку и мы добавим ваш бизнес в<br/> свой каталог услуг
+                – <strong>бесплатно!</strong>
+              </Text>
 
-            <Group>
-              <Button onClick={() => {
-              }}>Оставить заявку</Button>
-              <Button onClick={() => {
-              }}>Хотите больше?</Button>
-            </Group>
+              <Group mt="lg">
+                <Button color="#000000" onClick={() => {
+                }}>Оставить заявку</Button>
+                <Button onClick={() => {
+                }}>Хотите больше?</Button>
+              </Group>
+            </Box>
           </Grid.Col>
         </Grid>
       </Container>
@@ -68,57 +79,61 @@ function Business(props: Props) {
         </section>
       </Container>
 
-      <Container size="lg" p={0}>
+      <Box sx={{ position: 'relative' }}>
+
+        <Container size="lg" p={0} sx={{ marginTop: '140px' }}>
+          <section>
+            <Grid>
+              <Grid.Col>
+                <Title size="h1" sx={{ textAlign: 'center' }}>Что мы предлагаем?</Title>
+              </Grid.Col>
+
+              <Grid.Col span={6}>
+                <Box sx={{ marginTop: '130px', position: 'relative', zIndex: 1 }}>
+                  <Button sx={{ marginBottom: '30px' }}>Для бизнеса</Button>
+                  <Text weight="bold" size={24}>
+                    У нас есть CRM решение, где вы можете создавать, редактировать и принимать мгновенные заказы.
+                    А так же мониторить статистику продаж и других метрик
+                  </Text>
+                </Box>
+              </Grid.Col>
+            </Grid>
+          </section>
+
+        </Container>
+
+        <Box style={{
+          position: 'absolute',
+          right: 0,
+          top: '-100px',
+          width: '1100px'
+        }}>
+          <img src="/public/business-images/ipad.png" alt="Ipad" style={{ width: '100%' }}/>
+        </Box>
+      </Box>
+
+      <Container size="lg" sx={{ marginTop: '300px', marginBottom: '370px', paddingTop: '200px' }}>
         <section>
           <Grid>
-            <Grid.Col>
-              <Text>Что мы предлагаем?</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-              <Button>Для бизнеса</Button>
-              <Text>
-                У нас есть CRM решение, где вы можете создавать, редактировать и принимать мгновенные заказы.
-                А так же мониторить статистику продаж и других метрик
-              </Text>
-            </Grid.Col>
-
             <Grid.Col span={6} style={{ position: 'relative' }}>
               <Box style={{
                 position: 'absolute',
                 left: 0,
-                top: 0
+                top: 0,
+                width: '435px'
               }}>
-                <img src="/public/business-images/ipad.png" alt="Ipad"/>
-              </Box>
-            </Grid.Col>
-          </Grid>
-        </section>
-      </Container>
-
-      <Container size="lg" p={0}>
-        <section>
-          <Grid>
-            <Grid.Col>
-              <Text>Что мы предлагаем?</Text>
-            </Grid.Col>
-
-            <Grid.Col span={6} style={{ position: 'relative' }}>
-              <Box style={{
-                position: 'absolute',
-                left: 0,
-                top: 0
-              }}>
-                <img src="/public/business-images/iphone.png" alt="Iphone"/>
+                <img src="/public/business-images/iphone.png" alt="Iphone" style={{ width: '100%' }}/>
               </Box>
             </Grid.Col>
 
             <Grid.Col span={6}>
-              <Button>Для ваших клиентов</Button>
-              <Text>
-                Для ваших клиентов предостовляем бесплатное мобильное приложение,
-                чтобы они могли просматривать весь спектр услуг и бронировать мгновенно
-              </Text>
+              <Box sx={{ marginTop: '160px' }}>
+                <Button sx={{ marginBottom: '30px' }}>Для ваших клиентов</Button>
+                <Text weight="bold" size={24}>
+                  Для ваших клиентов предостовляем бесплатное мобильное приложение,
+                  чтобы они могли просматривать весь спектр услуг и бронировать мгновенно
+                </Text>
+              </Box>
             </Grid.Col>
           </Grid>
         </section>
@@ -139,7 +154,7 @@ function Business(props: Props) {
           <Box sx={{ position: 'absolute', left: 0, top: 0 }}>
             <Group>
               <Box>
-                <Image sx={{ width: '100%'}} src="/public/business-images/bottom-people/1.png" alt="1" />
+                <Image sx={{ width: '100%' }} src="/public/business-images/bottom-people/1.png" alt="1"/>
               </Box>
 
               <Box mt="70px">
