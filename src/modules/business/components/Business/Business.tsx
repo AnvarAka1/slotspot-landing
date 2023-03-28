@@ -1,5 +1,8 @@
 import React from 'react'
 import { Container, Box, Button, Grid, Group, Text, Image, Title } from '@mantine/core'
+import PrimaryButton from '@src/modules/business/components/Business/PrimaryButton'
+import WhiteButton from '@src/modules/business/components/Business/WhiteButton'
+import CircledButton from '@src/modules/business/components/Business/CircledButton'
 
 type Props = Record<string, unknown>
 
@@ -27,10 +30,10 @@ function Business(props: Props) {
               </Text>
 
               <Group mt="lg">
-                <Button color="#000000" onClick={() => {
-                }}>Оставить заявку</Button>
-                <Button onClick={() => {
-                }}>Хотите больше?</Button>
+                <PrimaryButton onClick={() => {
+                }}>Оставить заявку</PrimaryButton>
+                <WhiteButton onClick={() => {
+                }}>Хотите больше?</WhiteButton>
               </Group>
             </Box>
           </Grid.Col>
@@ -90,7 +93,12 @@ function Business(props: Props) {
 
               <Grid.Col span={6}>
                 <Box sx={{ marginTop: '130px', position: 'relative', zIndex: 1 }}>
-                  <Button sx={{ marginBottom: '30px' }}>Для бизнеса</Button>
+                  <Box sx={{ marginBottom: '30px' }}>
+                    <CircledButton onClick={() => {
+                    }}>
+                      Для бизнеса
+                    </CircledButton>
+                  </Box>
                   <Text weight="bold" size={24}>
                     У нас есть CRM решение, где вы можете создавать, редактировать и принимать мгновенные заказы.
                     А так же мониторить статистику продаж и других метрик
@@ -128,7 +136,12 @@ function Business(props: Props) {
 
             <Grid.Col span={6}>
               <Box sx={{ marginTop: '160px' }}>
-                <Button sx={{ marginBottom: '30px' }}>Для ваших клиентов</Button>
+                <Box sx={{ marginBottom: '30px' }}>
+                  <CircledButton onClick={() => {
+                  }}>
+                    Для ваших клиентов
+                  </CircledButton>
+                </Box>
                 <Text weight="bold" size={24}>
                   Для ваших клиентов предостовляем бесплатное мобильное приложение,
                   чтобы они могли просматривать весь спектр услуг и бронировать мгновенно
@@ -143,34 +156,40 @@ function Business(props: Props) {
         <Box component="section" sx={{ position: 'relative', background: '#0A0F16' }}>
           <Grid>
             <Grid.Col>
-              <Box>
-                <Text>Свяжитесь с нами</Text>
-                <Text>и наши специалисты помогут настроить ваш бизнес в нашей системе</Text>
-                <Button>Оставить заявку</Button>
+              <Box sx={{ marginTop: '150px', marginBottom: '150px', textAlign: 'center', padding: '16px' }}>
+                <Title size="xxx-large" color="white">Свяжитесь с нами</Title>
+                <Text color="#B8BEC1" sx={{ marginTop: '6px' }}>и наши специалисты помогут настроить ваш бизнес в нашей
+                  системе</Text>
+                <Box sx={{ marginTop: '32px' }}>
+                  <WhiteButton onClick={() => {
+                  }}>
+                    Оставить заявку
+                  </WhiteButton>
+                </Box>
               </Box>
             </Grid.Col>
           </Grid>
 
           <Box sx={{ position: 'absolute', left: 0, top: 0 }}>
             <Group>
-              <Box>
-                <Image sx={{ width: '100%' }} src="/public/business-images/bottom-people/1.png" alt="1"/>
+              <Box sx={{ width: '190px' }}>
+                <img style={{ width: '100%' }} src="/public/business-images/bottom-people/1.png" alt="1"/>
               </Box>
 
-              <Box mt="70px">
-                <img src="/public/business-images/bottom-people/2.png" alt="2"/>
+              <Box mt="70px" sx={{ width: '190px' }}>
+                <img style={{ width: '100%' }} src="/public/business-images/bottom-people/2.png" alt="2"/>
               </Box>
             </Group>
           </Box>
 
           <Box sx={{ position: 'absolute', right: 0, top: 0 }}>
             <Group>
-              <Box>
-                <img src="/public/business-images/bottom-people/3.png" alt="3"/>
+              <Box sx={{ width: '190px' }}>
+                <img style={{ width: '100%' }} src="/public/business-images/bottom-people/3.png" alt="3"/>
               </Box>
 
-              <Box mt="70px">
-                <img src="/public/business-images/bottom-people/4.png" alt="4"/>
+              <Box mt="70px" sx={{ width: '190px' }}>
+                <img style={{ width: '100%' }} src="/public/business-images/bottom-people/4.png" alt="4"/>
               </Box>
             </Group>
           </Box>
