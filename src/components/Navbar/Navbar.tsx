@@ -65,7 +65,9 @@ export function Navbar() {
       <Header className={classes.header} height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
           <Group sx={{ height: '100%' }} spacing={24} className={classes.hiddenMobile}>
-            <Image height={24} width={110} src={SlotSpot}/>
+            <Link to={ROUTES.HOME_PATH}>
+              <Image height={24} width={110} src={SlotSpot}/>
+            </Link>
 
             <Link to={ROUTES.HOME_PATH} className={classes.link}>
               О нас

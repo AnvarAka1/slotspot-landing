@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react'
 import { Button, ButtonProps } from '@mantine/core'
 
 type Props = {
-  onClick: MouseEventHandler
+  onClick?: MouseEventHandler
 } & ButtonProps
 
 function PrimaryButton({ onClick, ...props }: Props) {

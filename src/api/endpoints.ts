@@ -4,3 +4,5 @@ export const AUTH = "/auth";
 
 export const COMPANY_LIST = "/companies/list/";
 export const COMPANY_DETAIL = "/companies/:id/";
+
+export const APPLICATION_SEND = "/application/send/";

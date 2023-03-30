@@ -1,14 +1,22 @@
 import React from 'react'
-import { Container, Box, Button, Grid, Group, Text, Image, Title } from '@mantine/core'
+import { Box, Container, Grid, Group, Image, Text, Title } from '@mantine/core'
 import PrimaryButton from '@src/modules/business/components/Business/PrimaryButton'
 import WhiteButton from '@src/modules/business/components/Business/WhiteButton'
 import CircledButton from '@src/modules/business/components/Business/CircledButton'
+import { useDisclosure } from '@mantine/hooks'
+import RequestModal from '@src/modules/business/components/Business/RequestModal'
+import { ApplicationReqDto } from '@src/modules/business/dto'
 
-type Props = Record<string, unknown>
+type Props = {
+  onApplicationSend: (value: ApplicationReqDto) => Promise<void>
+}
 
-function Business(props: Props) {
+function Business({ onApplicationSend }: Props) {
+  const [opened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+
   return (
     <>
+      <RequestModal opened={opened} onClose={handleClose} onSubmit={onApplicationSend}/>
       <Container size="lg">
         <Grid>
           <Grid.Col span={12}>
@@ -30,8 +38,7 @@ function Business(props: Props) {
               </Text>
 
               <Group mt="lg">
-                <PrimaryButton onClick={() => {
-                }}>Оставить заявку</PrimaryButton>
+                <PrimaryButton onClick={handleOpen}>Оставить заявку</PrimaryButton>
                 <WhiteButton onClick={() => {
                 }}>Хотите больше?</WhiteButton>
               </Group>
@@ -83,7 +90,6 @@ function Business(props: Props) {
       </Container>
 
       <Box sx={{ position: 'relative' }}>
-
         <Container size="lg" p={0} sx={{ marginTop: '140px' }}>
           <section>
             <Grid>
@@ -161,8 +167,7 @@ function Business(props: Props) {
                 <Text color="#B8BEC1" sx={{ marginTop: '6px' }}>и наши специалисты помогут настроить ваш бизнес в нашей
                   системе</Text>
                 <Box sx={{ marginTop: '32px' }}>
-                  <WhiteButton onClick={() => {
-                  }}>
+                  <WhiteButton onClick={handleOpen}>
                     Оставить заявку
                   </WhiteButton>
                 </Box>

@@ -5,3 +5,9 @@ export const get = async (url: string) => {
 
   return data
 }
+
+export const post = async <T>(url: string, reqData: T) => {
+  const { data } = await axiosInstance.post(url, reqData)
+
+  return data
+}
