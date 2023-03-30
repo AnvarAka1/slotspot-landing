@@ -7,11 +7,12 @@ import { Faq } from '@src/components/Accordion/Faq'
 import Categories from '@src/components/Card/Categories'
 import TelegramContact from '@src/components/Banner/TelegramContact'
 import { Layout } from '@shared/layout'
-import { useCompanyList } from '@src/modules/home/services'
+import { useCategoryList, useCompanyList } from '@src/modules/home/services'
 import { emptyArray } from '@src/constants/empty'
 
 function HomeContainer() {
-  const { data, isLoading } = useCompanyList()
+  const categoryList = useCategoryList()
+  const companyList = useCompanyList()
 
   return (
     <Layout>
@@ -22,11 +23,11 @@ function HomeContainer() {
             <SearchAutocompleteInput/>
 
             <Grid.Col p={0} xs={12} mt={24}>
-              <Categories/>
+              <Categories categories={categoryList.data?.data.results || emptyArray}/>
             </Grid.Col>
 
             <Grid.Col p={0} xs={12} mt={24}>
-              <SpotCarousel companies={data?.data.results || emptyArray}/>
+              <SpotCarousel companies={companyList.data?.data.results || emptyArray}/>
             </Grid.Col>
 
             <Grid.Col p={0} xs={12} mt={24}>

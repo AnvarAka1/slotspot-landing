@@ -1,8 +1,9 @@
 import { ImageType, TrText } from '@src/types'
 
 export type Category = {
-  pk: number,
-  title: string,
+  id: number
+  pk: number
+  title: string
   icon: string
 }
 
