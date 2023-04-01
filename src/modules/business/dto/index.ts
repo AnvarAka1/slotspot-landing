@@ -1,7 +1,9 @@
+import { Category } from '@src/dto/company'
+
 export type ApplicationReqDto = {
-  name: string
-  business: string
-  category: string
+  fullname: string
+  businessName: string
+  attachCategories: Category[]
   link: string
   phone: string
 }

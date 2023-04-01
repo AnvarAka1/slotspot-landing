@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Modal, Select, TextInput } from '@mantine/core'
 import { Controller, useForm } from 'react-hook-form'
 import { ApplicationReqDto } from '@src/modules/business/dto'
+import AutocompleteField from '@src/components/Fields/AutocompleteField'
 
 type Props = {
   opened: boolean
@@ -24,7 +25,7 @@ function RequestModal({ opened, onClose, onSubmit }: Props) {
         <Grid>
           <Grid.Col>
             <TextInput
-              {...register('name')}
+              {...register('fullname')}
               label="Полное имя"
               placeholder="Например, Роберт Фокс"
             />
@@ -32,26 +33,14 @@ function RequestModal({ opened, onClose, onSubmit }: Props) {
 
           <Grid.Col>
             <TextInput
-              {...register('business')}
+              {...register('businessName')}
               label="Название бизнеса"
               placeholder="Например, Slotspot App"
             />
           </Grid.Col>
 
           <Grid.Col>
-            <Controller
-              name="category"
-              control={control}
-              render={({ field, fieldState, formState }) => (
-                <Select
-                  label="Категория бизнеса"
-                  value={field.value}
-                  onChange={value => field.onChange(value)}
-                  data={OPTIONS}
-                  placeholder="Выберите из списка"
-                />
-              )}
-            />
+            <AutocompleteField name="categories" api={''}/>
           </Grid.Col>
 
           <Grid.Col>
