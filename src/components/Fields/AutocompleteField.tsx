@@ -1,23 +1,30 @@
-import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { Box, Chip, createStyles, Menu, TextInput } from '@mantine/core'
-
+import axios from '@src/api/instance'
 
 const useStyles = createStyles(() => ({
   root: {
     minHeight: '36px',
-    paddingLeft: '12px',
-    paddingRight: '12px',
     borderRadius: '4px',
     border: '1px solid #ced4da',
     backgroundColor: '#fff',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'relative',
+    flexWrap: 'wrap',
+    padding: '6px'
   },
   chipList: {
     display: 'flex'
   },
-  textInput: {},
+  textInput: {
+    width: 0,
+    minWidth: '30px',
+    flexGrow: 1
+  },
   input: {
+    width: '100%',
+    padding: '0 2px',
     border: 'none',
     outline: 'none',
     '&:active, &:focus, &:hover': {
@@ -32,20 +39,32 @@ type Props = {
   api: string
 }
 
-type OptionType = { id: number, name: string }
+type OptionType = { id: number, title: string }
 
 function AutocompleteField({ name, api }: Props) {
   const { classes } = useStyles()
 
-  const ref = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [loading, setLoading] = useState(false)
   const [value, setValue] = useState('')
   const [values, setValues] = useState<OptionType[]>([])
+  const [options, setOptions] = useState<OptionType[]>([])
   const [opened, setOpened] = useState(false)
-  const [options, setOptions] = useState([{ id: 1, name: 'hello' }, { id: 2, name: 'hi' }])
 
+  useEffect(() => {
+    setLoading(true)
+    axios.get(api, { params: { q: value } })
+      .then((response) => {
+        const data = response.data
+        const results = data.data.results || []
+
+        setOptions(results)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [value])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
@@ -56,7 +75,7 @@ function AutocompleteField({ name, api }: Props) {
       removeValue(values[values.length - 1])
     }
 
-    if(event.key === 'ArrowDown') {
+    if (event.key === 'ArrowDown') {
       setOpened(true)
     }
   }
@@ -107,14 +126,12 @@ function AutocompleteField({ name, api }: Props) {
 
   return (
     <Menu opened={opened}>
-      <Box ref={ref} className={classes.root}>
-        <Box className={classes.chipList}>
-          {values.map(value => (
-            <Chip key={value.id} checked={false}>
-              {value.name} <span onClick={() => handleValueRemove(value)}>x</span>
-            </Chip>
-          ))}
-        </Box>
+      <Box className={classes.root}>
+        {values.map(value => (
+          <Chip key={value.id} checked={false} sx={{ marginRight: '2px' }}>
+            {value.title} <span onClick={() => handleValueRemove(value)}>x</span>
+          </Chip>
+        ))}
         <Menu.Target>
           <TextInput
             ref={inputRef}
@@ -129,8 +146,8 @@ function AutocompleteField({ name, api }: Props) {
           />
         </Menu.Target>
         <Menu.Dropdown sx={{
-          left: `${ref.current ? ref.current.offsetLeft + 'px' : '0'} !important`,
-          width: `${ref.current ? ref.current.clientWidth + 'px' : '100%'} !important`
+          left: '0 !important',
+          width: '100% !important'
         }}>
           {options.length
             ? options.map((value) => (
@@ -140,7 +157,7 @@ function AutocompleteField({ name, api }: Props) {
                 onKeyPress={(event) => handleOptionSelect(event, value)}
                 color="default"
               >
-                {value.name}
+                {value.title}
               </Menu.Item>
             ))
             : 'No options found.'}

@@ -2,6 +2,7 @@ import { Box, Button, Grid, Modal, Select, TextInput } from '@mantine/core'
 import { Controller, useForm } from 'react-hook-form'
 import { ApplicationReqDto } from '@src/modules/business/dto'
 import AutocompleteField from '@src/components/Fields/AutocompleteField'
+import * as API from '@src/api/endpoints'
 
 type Props = {
   opened: boolean
@@ -40,7 +41,7 @@ function RequestModal({ opened, onClose, onSubmit }: Props) {
           </Grid.Col>
 
           <Grid.Col>
-            <AutocompleteField name="categories" api={''}/>
+            <AutocompleteField name="categories" api={API.CATEGORY_LIST}/>
           </Grid.Col>
 
           <Grid.Col>
