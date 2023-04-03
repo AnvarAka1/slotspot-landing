@@ -1,8 +1,9 @@
-import { Box, Button, Grid, Modal, Select, TextInput } from '@mantine/core'
-import { Controller, useForm } from 'react-hook-form'
+import { Box, Button, Grid, Modal, TextInput } from '@mantine/core'
+import { useForm } from 'react-hook-form'
 import { ApplicationReqDto } from '@src/modules/business/dto'
-import AutocompleteField from '@src/components/Fields/AutocompleteField'
 import * as API from '@src/api/endpoints'
+import SearchField from '@src/components/Fields/SearchField'
+import PhoneField from '@src/components/Fields/PhoneField'
 
 type Props = {
   opened: boolean
@@ -41,20 +42,20 @@ function RequestModal({ opened, onClose, onSubmit }: Props) {
           </Grid.Col>
 
           <Grid.Col>
-            <AutocompleteField name="categories" api={API.CATEGORY_LIST}/>
+            <SearchField name="attachCategories" api={API.CATEGORY_LIST} control={control}/>
           </Grid.Col>
 
           <Grid.Col>
             <TextInput
               {...register('link')}
-              label="Ссылка в соц. сетяи или веб сайт"
+              label="Ссылка в соц. сети или веб сайт"
               placeholder="Например https://instagram.com/slotspot.app"
             />
           </Grid.Col>
 
           <Grid.Col>
-            <TextInput
-              {...register('phone')}
+            <PhoneField
+              control={control}
               label="Номер телефона"
               placeholder="Например +998 90 934 46 57"
             />

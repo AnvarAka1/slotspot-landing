@@ -35,20 +35,20 @@ const useStyles = createStyles(() => ({
 }))
 
 type Props = {
-  name: string
   api: string
+  onValuesChange: (values: OptionType[]) => void
+  values: OptionType[]
 }
 
 type OptionType = { id: number, title: string }
 
-function AutocompleteField({ name, api }: Props) {
+function AutocompleteField({ api, values, onValuesChange }: Props) {
   const { classes } = useStyles()
 
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [loading, setLoading] = useState(false)
   const [value, setValue] = useState('')
-  const [values, setValues] = useState<OptionType[]>([])
   const [options, setOptions] = useState<OptionType[]>([])
   const [opened, setOpened] = useState(false)
 
@@ -68,6 +68,11 @@ function AutocompleteField({ name, api }: Props) {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
+    setOpened(true)
+
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
   }
 
   const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -81,14 +86,14 @@ function AutocompleteField({ name, api }: Props) {
   }
 
   const removeValue = (valueToRemove: OptionType) => {
-    setValues(prevValues => prevValues.filter(value => value.id !== valueToRemove.id))
+    onValuesChange(values.filter(value => value.id !== valueToRemove.id))
   }
 
   const changeValues = (clickedValue: OptionType) => {
     const exists = values.find((value) => value.id === clickedValue.id)
 
     if (!exists) {
-      setValues(prevValues => [...prevValues, clickedValue])
+      onValuesChange([...values, clickedValue])
       setValue('')
     }
 
@@ -102,7 +107,7 @@ function AutocompleteField({ name, api }: Props) {
       event.preventDefault()
       changeValues(value)
       setOpened(false)
-
+      setValue('')
       if (inputRef.current) {
         inputRef.current.focus()
       }
@@ -113,6 +118,7 @@ function AutocompleteField({ name, api }: Props) {
   const handleOptionClick = (value: OptionType) => {
     changeValues(value)
     setOpened(false)
+    setValue('')
 
     if (inputRef.current) {
       inputRef.current.focus()
@@ -125,7 +131,7 @@ function AutocompleteField({ name, api }: Props) {
   }
 
   return (
-    <Menu opened={opened}>
+    <Menu opened={opened} closeOnClickOutside={true}>
       <Box className={classes.root}>
         {values.map(value => (
           <Chip key={value.id} checked={false} sx={{ marginRight: '2px' }}>
@@ -145,10 +151,12 @@ function AutocompleteField({ name, api }: Props) {
             onKeyDown={handleInputKeyDown}
           />
         </Menu.Target>
-        <Menu.Dropdown sx={{
-          left: '0 !important',
-          width: '100% !important'
-        }}>
+        <Menu.Dropdown
+          sx={{
+            left: '0 !important',
+            width: '100% !important'
+          }}
+        >
           {options.length
             ? options.map((value) => (
               <Menu.Item
@@ -167,4 +175,4 @@ function AutocompleteField({ name, api }: Props) {
   )
 }
 
-export default AutocompleteField
+export default React.memo(AutocompleteField)

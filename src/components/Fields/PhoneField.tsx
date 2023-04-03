@@ -1,18 +1,18 @@
 import * as React from 'react'
-import { Controller } from 'react-hook-form'
+import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 
 import PhoneInput, { ReactPhoneInputProps } from './PhoneInput'
-import FieldWrapper, { FormMethods } from './FieldWrapper'
 
-type Props = {
+type Props<T extends FieldValues> = {
   name?: string
-} & FormMethods & Partial<ReactPhoneInputProps>
+  control: Control<T>
+} & Partial<ReactPhoneInputProps>
 
-function PhoneField({ name = 'phone', formMethods, ...props }: Props) {
+function PhoneField<T extends FieldValues>({ name = 'phone', control, ...props }: Props<T>) {
   return (
     <Controller
-      name={name}
-      control={formMethods.control}
+      name={name as Path<T>}
+      control={control}
       render={({ field, fieldState }) => (
         <PhoneInput
           label="Номер телефона"
@@ -27,4 +27,4 @@ function PhoneField({ name = 'phone', formMethods, ...props }: Props) {
   )
 }
 
-export default FieldWrapper(PhoneField)
+export default PhoneField
