@@ -11,13 +11,6 @@ type Props = {
   onSubmit: (values: ApplicationReqDto) => Promise<void>
 }
 
-const OPTIONS = [
-  { value: 'manicure', label: 'Маникюр/Педикюр' },
-  { value: 'barbershop', label: 'Барбершопы/Парикмахерские' },
-  { value: 'entertainment', label: 'Развлекательные центры' },
-  { value: 'spa', label: 'SPA-салоны' }
-]
-
 function RequestModal({ opened, onClose, onSubmit }: Props) {
   const { register, control, handleSubmit } = useForm<ApplicationReqDto>()
 
