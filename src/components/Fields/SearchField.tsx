@@ -6,16 +6,18 @@ import { emptyArray } from '@src/constants/empty'
 type Props<T extends FieldValues> = {
   name: string
   api: string
+  label: string
   control: Control<T>
 }
 
-function SearchField<T extends FieldValues = FieldValues>({ name, api, control }: Props<T>) {
+function SearchField<T extends FieldValues = FieldValues>({ name, label, api, control }: Props<T>) {
   return (
     <Controller
       name={name as Path<T>}
       control={control}
       render={({ field }) => (
         <AutocompleteField
+          label={label}
           api={api}
           onValuesChange={field.onChange}
           values={field.value || emptyArray}

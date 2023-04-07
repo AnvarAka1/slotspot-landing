@@ -12,7 +12,16 @@ const useStyles = createStyles(() => ({
     alignItems: 'center',
     position: 'relative',
     flexWrap: 'wrap',
-    padding: '6px'
+    padding: '0 6px',
+    boxSizing: 'border-box'
+  },
+  label: {
+    display: 'inline-block',
+    fontSize: '14px',
+    fontWeight: 500,
+    color: '#212529',
+    wordBreak: 'break-word',
+    cursor: 'default'
   },
   chipList: {
     display: 'flex'
@@ -35,6 +44,7 @@ const useStyles = createStyles(() => ({
 }))
 
 type Props = {
+  label: string
   api: string
   onValuesChange: (values: OptionType[]) => void
   values: OptionType[]
@@ -42,7 +52,7 @@ type Props = {
 
 type OptionType = { id: number, title: string }
 
-function AutocompleteField({ api, values, onValuesChange }: Props) {
+function AutocompleteField({ label, api, values, onValuesChange }: Props) {
   const { classes } = useStyles()
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -132,44 +142,47 @@ function AutocompleteField({ api, values, onValuesChange }: Props) {
 
   return (
     <Menu opened={opened} closeOnClickOutside={true}>
-      <Box className={classes.root}>
-        {values.map(value => (
-          <Chip key={value.id} checked={false} sx={{ marginRight: '2px' }}>
-            {value.title} <span onClick={() => handleValueRemove(value)}>x</span>
-          </Chip>
-        ))}
-        <Menu.Target>
-          <TextInput
-            ref={inputRef}
-            classNames={{
-              root: classes.textInput,
-              input: classes.input
+      <Box>
+        <label className={classes.label}>{label}</label>
+        <Box className={classes.root}>
+          {values.map(value => (
+            <Chip key={value.id} checked={false} sx={{ marginRight: '2px' }}>
+              {value.title} <span onClick={() => handleValueRemove(value)}>x</span>
+            </Chip>
+          ))}
+          <Menu.Target>
+            <TextInput
+              ref={inputRef}
+              classNames={{
+                root: classes.textInput,
+                input: classes.input
+              }}
+              value={value}
+              onChange={handleChange}
+              onClick={() => setOpened(true)}
+              onKeyDown={handleInputKeyDown}
+            />
+          </Menu.Target>
+          <Menu.Dropdown
+            sx={{
+              left: '0 !important',
+              width: '100% !important'
             }}
-            value={value}
-            onChange={handleChange}
-            onClick={() => setOpened(true)}
-            onKeyDown={handleInputKeyDown}
-          />
-        </Menu.Target>
-        <Menu.Dropdown
-          sx={{
-            left: '0 !important',
-            width: '100% !important'
-          }}
-        >
-          {options.length
-            ? options.map((value) => (
-              <Menu.Item
-                key={value.id}
-                onClick={() => handleOptionClick(value)}
-                onKeyPress={(event) => handleOptionSelect(event, value)}
-                color="default"
-              >
-                {value.title}
-              </Menu.Item>
-            ))
-            : 'No options found.'}
-        </Menu.Dropdown>
+          >
+            {options.length
+              ? options.map((value) => (
+                <Menu.Item
+                  key={value.id}
+                  onClick={() => handleOptionClick(value)}
+                  onKeyPress={(event) => handleOptionSelect(event, value)}
+                  color="default"
+                >
+                  {value.title}
+                </Menu.Item>
+              ))
+              : 'No options found.'}
+          </Menu.Dropdown>
+        </Box>
       </Box>
     </Menu>
   )

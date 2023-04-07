@@ -11,33 +11,37 @@ export type ReactPhoneInputProps = {
 
 const useStyles = createStyles((theme) => ({
   root: {
-    border: 'none',
-    width: '100%',
-    '& > .form-control': {
-      border: 'none',
-      borderBottom: 'rgba(0, 0, 0, 0.6) 1px solid',
-      width: '100%',
-      fontSize: '16px',
-      padding: '8px 0px',
-      '&:focus': {
-        outline: 'none',
-        borderBottomColor: theme.primaryColor,
-        borderBottomWidth: '2px'
-      },
-      '&:hover': {
-        outline: 'none'
-      }
-    },
     '& > .special-label': {
-      color: 'rgba(0, 0, 0, 0.6)',
-      fontSize: '12px'
-    },
-    '& .form-control.invalid-number': {
-      borderBottomColor: theme.primaryColor,
-      borderBottomWidth: '1.5px',
-      '&:focus': {
-        borderBottomWidth: '2px'
-      }
+      display: 'inline-block',
+      fontSize: '14px',
+      fontWeight: 500,
+      color: '#212529',
+      wordBreak: 'break-word',
+      cursor: 'default'
+    }
+  },
+  input: {
+    height: '36px',
+    '-webkit-tap-highlight-color': 'transparent',
+    lineHeight: '34px',
+    appearance: 'none',
+    resize: 'none',
+    boxSizing: 'border-box',
+    fontSize: '14px',
+    width: '100%',
+    color: '#000',
+    display: 'block',
+    textAlign: 'left',
+    minHeight: '36px',
+    paddingLeft: '12px',
+    paddingRight: '12px',
+    borderRadius: '4px',
+    border: '1px solid #ced4da',
+    backgroundColor: '#fff',
+    transition: 'border-color 100ms ease',
+    '&:focus': {
+      outline: 'none',
+      borderColor: '#228be6'
     }
   }
 }))
@@ -49,6 +53,7 @@ function PhoneInput({ value, label, invalid, helperText, ...props }: ReactPhoneI
     <>
       <ReactPhoneInput
         containerClass={classes.root}
+        inputClass={classes.input}
         inputProps={{
           required: true
         }}

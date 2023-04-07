@@ -35,7 +35,12 @@ function RequestModal({ opened, onClose, onSubmit }: Props) {
           </Grid.Col>
 
           <Grid.Col>
-            <SearchField name="attachCategories" api={API.CATEGORY_LIST} control={control}/>
+            <SearchField
+              name="attachCategories"
+              label="Категория бизнеса"
+              api={API.CATEGORY_LIST}
+              control={control}
+            />
           </Grid.Col>
 
           <Grid.Col>
