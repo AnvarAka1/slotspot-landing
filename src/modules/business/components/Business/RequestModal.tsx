@@ -38,6 +38,7 @@ function RequestModal({ opened, onClose, onSubmit }: Props) {
             <SearchField
               name="attachCategories"
               label="Категория бизнеса"
+              placeholder="Выберите из списка"
               api={API.CATEGORY_LIST}
               control={control}
             />

@@ -1,8 +1,8 @@
 import React, { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react'
-import { Box, Chip, createStyles, Menu, TextInput } from '@mantine/core'
+import { Box, Chip, clsx, createStyles, Menu, TextInput } from '@mantine/core'
 import axios from '@src/api/instance'
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   root: {
     minHeight: '36px',
     borderRadius: '4px',
@@ -40,11 +40,15 @@ const useStyles = createStyles(() => ({
       border: 'none',
       outline: 'none'
     }
+  },
+  activeMenuItem: {
+    backgroundColor: '#cecbcb',
   }
 }))
 
 type Props = {
   label: string
+  placeholder: string
   api: string
   onValuesChange: (values: OptionType[]) => void
   values: OptionType[]
@@ -52,7 +56,7 @@ type Props = {
 
 type OptionType = { id: number, title: string }
 
-function AutocompleteField({ label, api, values, onValuesChange }: Props) {
+function AutocompleteField({ label, placeholder, api, values, onValuesChange }: Props) {
   const { classes } = useStyles()
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -79,7 +83,6 @@ function AutocompleteField({ label, api, values, onValuesChange }: Props) {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
     setOpened(true)
-
     if (inputRef.current) {
       inputRef.current.focus()
     }
@@ -141,7 +144,7 @@ function AutocompleteField({ label, api, values, onValuesChange }: Props) {
   }
 
   return (
-    <Menu opened={opened} closeOnClickOutside={true}>
+    <Menu opened={opened} closeOnClickOutside={true} returnFocus={true}>
       <Box>
         <label className={classes.label}>{label}</label>
         <Box className={classes.root}>
@@ -157,6 +160,7 @@ function AutocompleteField({ label, api, values, onValuesChange }: Props) {
                 root: classes.textInput,
                 input: classes.input
               }}
+              placeholder={values.length ? '' : placeholder}
               value={value}
               onChange={handleChange}
               onClick={() => setOpened(true)}
@@ -176,6 +180,9 @@ function AutocompleteField({ label, api, values, onValuesChange }: Props) {
                   onClick={() => handleOptionClick(value)}
                   onKeyPress={(event) => handleOptionSelect(event, value)}
                   color="default"
+                  className={clsx({
+                    [classes.activeMenuItem]: values.find(val => val.id === value.id)
+                  })}
                 >
                   {value.title}
                 </Menu.Item>
